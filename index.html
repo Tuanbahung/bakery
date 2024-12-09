@@ -151,7 +151,7 @@
                 quantity: input.value || "0"
             }));
 
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxIDaVrirV4LCwxwnTV8JhfxCeauaY3EayGim92my-_VYBbQw7XXnjNI8IbPvgEz2ng/exec', {
+            const response = await fetch('https://script.google.com/macros/library/d/1V1MyfyA80RFCb-rRgg1xJFNCR2MloD_MIW4T3qxmO9RH7BUZ8iBW-ZoX/1', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ date, store, data: quantities })

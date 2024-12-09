@@ -109,7 +109,6 @@
                     </tr>
                 </thead>
                 <tbody id="productTable">
-                    <!-- Danh sách sản phẩm -->
                     <script>
                         const products = [
                             "Xúc xích", "Chà bông kẹp", "Pate trứng cút", "SW mặn", "Dăm bông trứng", 
@@ -129,7 +128,7 @@
                                 <tr>
                                     <td>${index + 1}</td>
                                     <td>${product}</td>
-                                    <td><input type="number" min="0" placeholder="0"></td>
+                                    <td><input type="number" class="quantity" data-product="${product}" min="0" placeholder="0"></td>
                                 </tr>
                             `);
                         });
@@ -140,5 +139,32 @@
             <button type="submit" class="submit-btn">Lưu Dữ Liệu</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const store = document.getElementById('store').value;
+            const quantities = Array.from(document.querySelectorAll('.quantity')).map(input => ({
+                product: input.dataset.product,
+                quantity: input.value || "0"
+            }));
+
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxIDaVrirV4LCwxwnTV8JhfxCeauaY3EayGim92my-_VYBbQw7XXnjNI8IbPvgEz2ng/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ date, store, data: quantities })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert("Dữ liệu đã được lưu thành công!");
+                document.getElementById('inputForm').reset();
+            } else {
+                alert("Có lỗi xảy ra. Vui lòng thử lại!");
+            }
+        });
+    </script>
 </body>
 </html>

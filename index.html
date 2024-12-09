@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Nhập Liệu Hàng Ngày</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Nhập Liệu Hàng Ngày</h1>
+        <form id="inputForm">
+            <label for="date">Ngày nhập liệu:</label>
+            <input type="date" id="date" required>
+
+            <label for="store">Cửa hàng:</label>
+            <select id="store" required>
+                <option value="">-- Chọn cửa hàng --</option>
+                <!-- Danh sách cửa hàng -->
+                <option value="40 LVH">40 LVH</option>
+                <option value="91 LVH">91 LVH</option>
+                <option value="313 LVH">313 LVH</option>
+                <option value="23 MĐC">23 MĐC</option>
+                <option value="276 TĐN">276 TĐN</option>
+                <option value="607 TĐN">607 TĐN</option>
+                <option value="1066 TĐN">1066 TĐN</option>
+                <option value="433 TTĐ">433 TTĐ</option>
+                <option value="01 LLQ">01 LLQ</option>
+                <option value="44 NTT">44 NTT</option>
+                <option value="676 HBT">676 HBT</option>
+                <option value="245 OIĐ">245 OIĐ</option>
+                <option value="155 LĐH">155 LĐH</option>
+                <option value="16 PĐL">16 PĐL</option>
+                <option value="110 DSTK">110 DSTK</option>
+                <option value="05 NTN">05 NTN</option>
+                <option value="85 NC">85 NC</option>
+                <option value="119 HHT">119 HHT</option>
+                <option value="141 QT">141 QT</option>
+                <option value="59 VĐ">59 VĐ</option>
+                <option value="605 NQ">605 NQ</option>
+                <option value="47 NVT">47 NVT</option>
+                <option value="207 CTVT">207 CTVT</option>
+                <option value="118 NHS">118 NHS</option>
+                <option value="61 CD">61 CD</option>
+            </select>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable">
+                    <!-- Danh sách sản phẩm -->
+                    <script>
+                        const products = [
+                            "Xúc xích", "Chà bông kẹp", "Pate trứng cút", "SW mặn", "Dăm bông trứng", 
+                            "Chà bông thịt", "Bông lúa", "Xúc xích Đức", "PIZZA", "Chiên xù", 
+                            "Pho mai que", "Bánh cua", "Hotdog dâu", "Bánh gấu", "Mehico", 
+                            "Dứa đường", "Phi mè", "Dừa lưới", "Donut đường", "BÁnh ong", 
+                            "Quế", "Chiên đường", "Tròn dừa", "Paparoty", "Hambogo", 
+                            "Donus", "Donut hạnh nhân", "Donut mini", "Sừng trâu", "Sừng trâu TM", 
+                            "Nho dừa", "Nho dài", "Hồ lô", "Pho mai bắp", "Ốc sô", 
+                            "Cuộn nho", "Hạnh nhân", "Pateso", "Xếp thịt", "Xoắn đường", 
+                            "Bánh mặn", "Bánh ngọt", "Sừng trâu SÔ", "Nhân sữa cacao", "Đx sầu riêng", 
+                            "Mè đen", "Hambogo mini", "Hộp DONUS", "Nho dài"
+                        ];
+
+                        products.forEach((product, index) => {
+                            document.write(`
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${product}</td>
+                                    <td><input type="number" min="0" placeholder="0"></td>
+                                </tr>
+                            `);
+                        });
+                    </script>
+                </tbody>
+            </table>
+
+            <button type="submit" class="submit-btn">Lưu Dữ Liệu</button>
+        </form>
+    </div>
+</body>
+</html>

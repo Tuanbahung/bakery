@@ -3,212 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Nhập Liệu Hàng Ngày</title>
+    <title>Nhập Liệu Đơn Hàng</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+            margin: 20px;
         }
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
+        input, label {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
             display: block;
         }
-        input, select, button {
-            width: 100%;
+        button {
             padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
-        }
-        .submit-btn {
-            background-color: #28a745;
-            color: white;
-            font-size: 18px;
             border: none;
             cursor: pointer;
-            margin-top: 20px;
         }
-        .submit-btn:hover {
-            background-color: #218838;
-        }
-        #submitStatus {
-            text-align: center;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .error {
-            color: red;
-        }
-        .success {
-            color: green;
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Form Nhập Liệu Hàng Ngày</h1>
-        <form id="inputForm">
-            <label for="date">Ngày nhập liệu:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="store">Cửa hàng:</label>
-            <select id="store" name="store" required>
-                <option value="">-- Chọn cửa hàng --</option>
-                <option value="40 LVH">40 LVH</option>
-                <option value="91 LVH">91 LVH</option>
-                <option value="313 LVH">313 LVH</option>
-                <option value="23 MĐC">23 MĐC</option>
-                <option value="276 TĐN">276 TĐN</option>
-                <option value="607 TĐN">607 TĐN</option>
-                <option value="1066 TĐN">1066 TĐN</option>
-                <option value="433 TTĐ">433 TTĐ</option>
-                <option value="01 LLQ">01 LLQ</option>
-                <option value="44 NTT">44 NTT</option>
-                <option value="676 HBT">676 HBT</option>
-                <option value="245 OIĐ">245 OIĐ</option>
-                <option value="155 LĐH">155 LĐH</option>
-                <option value="16 PĐL">16 PĐL</option>
-                <option value="110 DSTK">110 DSTK</option>
-                <option value="05 NTN">05 NTN</option>
-                <option value="85 NC">85 NC</option>
-                <option value="119 HHT">119 HHT</option>
-                <option value="141 QT">141 QT</option>
-                <option value="59 VĐ">59 VĐ</option>
-                <option value="605 NQ">605 NQ</option>
-                <option value="47 NVT">47 NVT</option>
-                <option value="207 CTVT">207 CTVT</option>
-                <option value="118 NHS">118 NHS</option>
-                <option value="61 CD">61 CD</option>
-            </select>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Số lượng</th>
-                    </tr>
-                </thead>
-                <tbody id="productTable">
-                    <!-- Products will be dynamically added here -->
-                </tbody>
-            </table>
-
-            <div id="submitStatus"></div>
-            <button type="submit" class="submit-btn">Lưu Dữ Liệu</button>
-        </form>
-    </div>
+    <h1>Nhập Liệu Đơn Hàng</h1>
+    <form id="orderForm">
+        <label for="date">Ngày:</label>
+        <input type="date" id="date" required>
+        
+        <label for="month">Tháng:</label>
+        <input type="number" id="month" required min="1" max="12">
+        
+        <label for="storeAddress">Địa chỉ cửa hàng:</label>
+        <input type="text" id="storeAddress" value="40 LVH" readonly>
+        
+        <h2>Danh mục sản phẩm</h2>
+        <div id="productList">
+            <label>Xúc xích:</label>
+            <input type="number" id="xucXich" min="0" placeholder="Số lượng">
+            
+            <label>Chà bông kẹp:</label>
+            <input type="number" id="chaBongKep" min="0" placeholder="Số lượng">
+            
+            <label>Pate trứng cút:</label>
+            <input type="number" id="pateTrungCut" min="0" placeholder="Số lượng">
+            
+            <label>SW mặn:</label>
+            <input type="number" id="swMan" min="0" placeholder="Số lượng">
+            
+            <label>Dăm bông trứng:</label>
+            <input type="number" id="damBongTrung" min="0" placeholder="Số lượng">
+            
+            <label>Chà bông thịt:</label>
+            <input type="number" id="chaBongThit" min="0" placeholder="Số lượng">
+            
+            <label>Bông lúa:</label>
+            <input type="number" id="bongLua" min="0" placeholder="Số lượng">
+            
+            <label>Xúc xích Đức:</label>
+            <input type="number" id="xucXichDuc" min="0" placeholder="Số lượng">
+            
+            <label>PIZZA:</label>
+            <input type="number" id="pizza" min="0" placeholder="Số lượng">
+            
+            <label>Chiên xù:</label>
+            <input type="number" id="chienXu" min="0" placeholder="Số lượng">
+            
+            <label>Pho mai que:</label>
+            <input type="number" id="phoMaiQue" min="0" placeholder="Số lượng">
+            
+            <label>Bánh cua:</label>
+            <input type="number" id="banhCua" min="0" placeholder="Số lượng">
+            
+            <label>Hotdog dâu:</label>
+            <input type="number" id="hotdogDau" min="0" placeholder="Số lượng">
+            
+            <label>Bánh gấu:</label>
+            <input type="number" id="banhGau" min="0" placeholder="Số lượng">
+            
+            <label>Mehico:</label>
+            <input type="number" id="mehico" min="0" placeholder="Số lượng">
+            
+            <label>Dứa đường:</label>
+            <input type="number" id="duaDuong" min="0" placeholder="Số lượng">
+            
+            <label>Phi mè:</label>
+            <input type="number" id="phiMe" min="0" placeholder="Số lượng">
+            
+            <label>Dừa lưới:</label>
+            <input type="number" id="duaLoi" min="0" placeholder="Số lượng">
+            
+            <label>Donut đường:</label>
+            <input type="number" id="donutDuong" min="0" placeholder="Số lượng">
+            
+            <label>BÁnh ong:</label>
+            <input type="number" id="banhOng" min="0" placeholder="Số lượng">
+            
+            <label>Quế:</label>
+            <input type="number" id="que" min="0" placeholder="Số lượng">
+            
+            <label>Chiên đường:</label>
+            <input type="number" id="chienDuong" min="0" placeholder="Số lượng">
+            
+            <label>Tròn dừa:</label>
+            <input type="number" id="tronDua" min="0" placeholder="Số lượng">
+            
+            <label>Paparoty:</label>
+            <input type="number" id="paparoty" min="0" placeholder="Số lượng">
+            
+            <label>Hambogo:</label>
+            <input type="number" id="hambogo" min="0" placeholder="Số lượng">
+            
+            <label>Donus:</label>
+            <input type="number" id="donus" min="0" placeholder="Số lượng">
+            
+            <label>Donut hạnh nhân:</label>
+            <input type="number" id="donutHanhNhan" min="0" placeholder="Số lượng">
+            
+            <label>Donut mini:</label>
+            <input type="number" id="donutMini" min="0" placeholder="Số lượng">
+            
+            <label>Sừng trâu:</label>
+            <input type="number" id="sungTrau" min="0" placeholder="Số lượng">
+            
+            <label>Sừng trâu TM:</label>
+            <input type="number" id="sungTrauTM" min="0" placeholder="Số lượng">
+            
+            <label>Nho dừa:</label>
+            <input type="number" id="nhoDua" min="0" placeholder="Số lượng">
+            
+            <label>Nho dài:</label>
+            <input type="number" id="nhoDai" min="0" placeholder="Số lượng">
+            
+            <label>Hồ lô:</label>
+            <input type="number" id="hoLo" min="0" placeholder="Số lượng">
+            
+            <label>Pho mai bắp:</label>
+            <input type="number" id="phoMaiBap" min="0" placeholder="Số lượng">
+            
+            <label>Ốc sô:</label>
+            <input type="number" id="ocSo" min="0" placeholder="Số lượng">
+            
+            <label>Cuộn nho:</label>
+            <input type="number" id="cuonNho" min="0" placeholder="Số lượng">
+            
+            <label>Hạnh nhân:</label>
+            <input type="number" id="hanhNhan" min="0" placeholder="Số lượng">
+            
+            <label>Pateso:</label>
+            <input type="number" id="pateso" min="0" placeholder="Số lượng">
+            
+            <label>Xếp thịt:</label>
+            <input type="number" id="xepThit" min="0" placeholder="Số lượng">
+            
+            <label>Xoắn đường:</label>
+            <input type="number" id="xoanDuong" min="0" placeholder="Số lượng">
+            
+            <label>Bánh mặn:</label>
+            <input type="number" id="banhMan" min="0" placeholder="Số lượng">
+            
+            <label>Bánh ngọt:</label>
+            <input type="number" id="banhNgot" min="0" placeholder="Số lượng">
+            
+            <label>Sừng trâu SÔ:</label>
+            <input type="number" id="sungTrauSO" min="0" placeholder="Số lượng">
+            
+            <label>Nhân sữa cacao:</label>
+            <input type="number" id="nhanSuaCacao" min="0" placeholder="Số lượng">
+            
+            <label>Đx sầu riêng:</label>
+            <input type="number" id="dxSauRieng" min="0" placeholder="Số lượng">
+            
+            <label>Mè đen:</label>
+            <input type="number" id="meDen" min="0" placeholder="Số lượng">
+            
+            <label>Hambogo mini:</label>
+            <input type="number" id="hambogoMini" min="0" placeholder="Số lượng">
+            
+            <label>Hộp DONUS:</label>
+            <input type="number" id="hopDonus" min="0" placeholder="Số lượng">
+            
+            <label>Nho dài:</label>
+            <input type="number" id="nhoDai2" min="0" placeholder="Số lượng">
+        </div>
+        
+        <button type="submit">Gửi Đơn Hàng</button>
+    </form>
 
     <script>
-        // Product list (unchanged from previous version)
-        const products = [
-            "Xúc xích", "Chà bông kẹp", "Pate trứng cút", "SW mặn", "Dăm bông trứng", 
-            "Chà bông thịt", "Bông lúa", "Xúc xích Đức", "PIZZA", "Chiên xù", 
-            "Pho mai que", "Bánh cua", "Hotdog dâu", "Bánh gấu", "Mehico", 
-            "Dứa đường", "Phi mè", "Dừa lưới", "Donut đường", "BÁnh ong", 
-            "Quế", "Chiên đường", "Tròn dừa", "Paparoty", "Hambogo", 
-            "Donus", "Donut hạnh nhân", "Donut mini", "Sừng trâu", "Sừng trâu TM", 
-            "Nho dừa", "Nho dài", "Hồ lô", "Pho mai bắp", "Ốc sô", 
-            "Cuộn nho", "Hạnh nhân", "Pateso", "Xếp thịt", "Xoắn đường", 
-            "Bánh mặn", "Bánh ngọt", "Sừng trâu SÔ", "Nhân sữa cacao", "Đx sầu riêng", 
-            "Mè đen", "Hambogo mini", "Hộp DONUS", "Nho dài"
-        ];
-
-        // Populate product table
-        const productTable = document.getElementById('productTable');
-        products.forEach((product, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${product}</td>
-                <td><input type="number" name="quantity_${index}" min="0" value="0"></td>
-            `;
-            productTable.appendChild(row);
-        });
-
-        // Form submission handler
-        document.getElementById('inputForm').addEventListener('submit', function(e) {
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const submitStatus = document.getElementById('submitStatus');
-            submitStatus.textContent = 'Đang gửi...';
-            submitStatus.className = 'submitStatus';
 
-            // Prepare form data
-            const formData = new FormData(e.target);
-            const date = formData.get('date');
-            const store = formData.get('store');
+            const date = document.getElementById('date').value;
+            const month = document.getElementById('month').value;
+            const storeAddress = document.getElementById('storeAddress').value;
 
-            // Collect product quantities
-            const quantities = products.map((_, index) => 
-                parseInt(formData.get(`quantity_${index}`) || '0')
-            );
+            const products = [
+                { name: 'Xúc xích', quantity: document.getElementById('xucXich').value },
+                { name: 'Chà bông kẹp', quantity: document.getElementById('chaBongKep').value },
+                { name: 'Pate trứng cút', quantity: document.getElementById('pateTrungCut').value },
+                { name: 'SW mặn', quantity: document.getElementById('swMan').value },
+                { name: 'Dăm bông trứng', quantity: document.getElementById('damBongTrung').value },
+                { name: 'Chà bông thịt', quantity: document.getElementById('chaBongThit').value },
+                { name: 'Bông lúa', quantity: document.getElementById('bongLua').value },
+                { name: 'Xúc xích Đức', quantity: document.getElementById('xucXichDuc').value },
+                { name: 'PIZZA', quantity: document.getElementById('pizza').value },
+                { name: 'Chiên xù', quantity: document.getElementById('chienXu').value },
+                { name: 'Pho mai que', quantity: document.getElementById('phoMaiQue').value },
+                { name: 'Bánh cua', quantity: document.getElementById('banhCua').value },
+                { name: 'Hotdog dâu', quantity: document.getElementById('hotdogDau').value },
+                { name: 'Bánh gấu', quantity: document.getElementById('banhGau').value },
+                { name: 'Mehico', quantity: document.getElementById('mehico').value },
+                { name: 'Dứa đường', quantity: document.getElementById('duaDuong').value },
+                { name: 'Phi mè', quantity: document.getElementById('phiMe').value },
+                { name: 'Dừa lưới', quantity: document.getElementById('duaLoi').value },
+                { name: 'Donut đường', quantity: document.getElementById('donutDuong').value },
+                { name: 'BÁnh ong', quantity: document.getElementById('banhOng').value },
+                { name: 'Quế', quantity: document.getElementById('que').value },
+                { name: 'Chiên đường', quantity: document.getElementById('chienDuong').value },
+                { name: 'Tròn dừa', quantity: document.getElementById('tronDua').value },
+                { name: 'Paparoty', quantity: document.getElementById('paparoty').value },
+                { name: 'Hambogo', quantity: document.getElementById('hambogo').value },
+                { name: 'Donus', quantity: document.getElementById('donus').value },
+                { name: 'Donut hạnh nhân', quantity: document.getElementById('donutHanhNhan').value },
+                { name: 'Donut mini', quantity: document.getElementById('donutMini').value },
+                { name: 'Sừng trâu', quantity: document.getElementById('sungTrau').value },
+                { name: 'Sừng trâu TM', quantity: document.getElementById('sungTrauTM').value },
+                { name: 'Nho dừa', quantity: document.getElementById('nhoDua').value },
+                { name: 'Nho dài', quantity: document.getElementById('nhoDai').value },
+                { name: 'Hồ lô', quantity: document.getElementById('hoLo').value },
+                { name: 'Pho mai bắp', quantity: document.getElementById('phoMaiBap').value },
+                { name: 'Ốc sô', quantity: document.getElementById('ocSo').value },
+                { name: 'Cuộn nho', quantity: document.getElementById('cuonNho').value },
+                { name: 'Hạnh nhân', quantity: document.getElementById('hanhNhan').value },
+                { name: 'Pateso', quantity: document.getElementById('pateso').value },
+                { name: 'Xếp thịt', quantity: document.getElementById('xepThit').value },
+                { name: 'Xoắn đường', quantity: document.getElementById('xoanDuong').value },
+                { name: 'Bánh mặn', quantity: document.getElementById('banhMan').value },
+                { name: 'Bánh ngọt', quantity: document.getElementById('banhNgot').value },
+                { name: 'Sừng trâu SÔ', quantity: document.getElementById('sungTrauSO').value },
+                { name: 'Nhân sữa cacao', quantity: document.getElementById('nhanSuaCacao').value },
+                { name: 'Đx sầu riêng', quantity: document.getElementById('dxSauRieng').value },
+                { name: 'Mè đen', quantity: document.getElementById('meDen').value },
+                { name: 'Hambogo mini', quantity: document.getElementById('hambogoMini').value },
+                { name: 'Hộp DONUS', quantity: document.getElementById('hopDonus').value },
+                { name: 'Nho dài', quantity: document.getElementById('nhoDai2').value },
+            ].filter(product => product.quantity > 0);
 
-            // Prepare payload
-            const payload = {
+            const data = {
                 date: date,
-                store: store,
-                products: JSON.stringify(products),
-                quantities: JSON.stringify(quantities)
+                month: month,
+                storeAddress: storeAddress,
+                products: products
             };
 
-            // Send data to Google Apps Script
             fetch('https://script.google.com/macros/s/AKfycbynYLejyWcPVFBuUf1XifGOR0A3QFSUVXC00fiiqdX-HgN4JztC9snBX7__gNFCWqQL/exec', {
                 method: 'POST',
-                mode: 'no-cors',
+                body: JSON.stringify(data),
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: Object.keys(payload)
-                    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(payload[key]))
-                    .join('&')
-            })
-            .then(response => {
-                submitStatus.textContent = 'Đã gửi thành công!';
-                submitStatus.className = 'submitStatus success';
-                e.target.reset(); // Reset form
-                
-                // Set default date to today again
-                document.getElementById('date').valueAsDate = new Date();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitStatus.textContent = 'Lỗi khi gửi dữ liệu! Vui lòng thử lại.';
-                submitStatus.className = 'submitStatus error';
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Đơn hàng đã được gửi thành công!');
+                    document.getElementById('orderForm').reset();
+                } else {
+                    alert('Có lỗi xảy ra!');
+                }
             });
         });
-
-        // Set default date to today
-        document.getElementById('date').valueAsDate = new Date();
     </script>
 </body>
 </html>

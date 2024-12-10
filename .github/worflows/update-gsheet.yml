@@ -24,5 +24,5 @@ jobs:
 
     - name: Run Google Sheets script
       env:
-        GOOGLE_SHEET_CREDENTIALS: ${{ secrets.GOOGLE_SHEET_CREDENTIALS }}
+        GGSHEETORDER: ${{ secrets.GGSHEETORDER }}
       run: node connect-gsheet.js

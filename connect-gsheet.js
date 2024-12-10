@@ -1,10 +1,10 @@
 const { google } = require('googleapis');
 
 // Lấy thông tin từ GitHub Secrets hoặc tệp JSON
-const credentials = JSON.parse(process.env.GOOGLE_SHEET_CREDENTIALS);
+const credentials = JSON.parse(process.env.GGSHEETORDER);
 
 // ID của Google Sheet
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID'; // Thay bằng ID của bạn
+const SPREADSHEET_ID = '12Ysyo2Xnu1775GMuHp9gWHp-AeKZTq3CmsnxVk07zRY'; // Thay bằng ID của bạn
 
 // Khởi tạo Google Sheets API
 async function initGoogleSheets() {
@@ -28,7 +28,7 @@ async function readSheet(sheetName) {
 
 // Ví dụ chạy
 (async () => {
-    const sheetName = 'CuaHang1'; // Tên bảng cần lấy dữ liệu
+    const sheetName = '40 LVH'; // Tên bảng cần lấy dữ liệu
     const data = await readSheet(sheetName);
     console.log('Data:', data);
 })();

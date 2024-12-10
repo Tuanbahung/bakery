@@ -1,0 +1,28 @@
+name: Update Google Sheets
+
+on:
+  push: # Kích hoạt khi có push vào repo
+    branches:
+      - main
+  workflow_dispatch: # Cho phép chạy thủ công từ giao diện GitHub
+
+jobs:
+  update-sheet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Google Sheets script
+      env:
+        GOOGLE_SHEET_CREDENTIALS: ${{ secrets.GOOGLE_SHEET_CREDENTIALS }}
+      run: node connect-gsheet.js

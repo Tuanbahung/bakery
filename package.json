@@ -1,0 +1,11 @@
+{
+  "name": "gsheet-integration",
+  "version": "1.0.0",
+  "main": "connect-gsheet.js",
+  "dependencies": {
+    "googleapis": "^105.0.0"
+  },
+  "scripts": {
+    "start": "node connect-gsheet.js"
+  }
+}
